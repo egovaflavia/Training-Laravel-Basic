@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('injek', 'PegawaiController@injek');
+Route::get('pegawai', 'PegawaiController@index');
+Route::get('pegawai/tambah', 'PegawaiController@tambah');
+Route::post('pegawai/tambah/proses', 'PegawaiController@store');
+Route::get('pegawai/{id}/edit', 'PegawaiController@edit');
+Route::get('pegawai/{id}/delete', 'PegawaiController@delete');
+Route::post('pegawai/edit/proses', 'PegawaiController@update');
