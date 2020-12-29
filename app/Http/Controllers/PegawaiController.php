@@ -36,7 +36,7 @@ class PegawaiController extends Controller
     public function index()
     {
         // mengambil data dari tabel
-        $pegawai = DB::table('tblpegawai')->get();
+        $pegawai = DB::table('tblpegawai')->paginate(10);
 
         return view('index', compact('pegawai'));
     }
@@ -48,6 +48,7 @@ class PegawaiController extends Controller
 
     public function store(Request $request)
     {
+
         DB::table('tblpegawai')->insert([
             'nama' => $request->nama,
             'jabatan' => $request->jabatan,
@@ -86,5 +87,16 @@ class PegawaiController extends Controller
             ->where('id', $id)
             ->delete();
         return redirect()->back();
+    }
+
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+
+        $pegawai = DB::table('tblpegawai')
+            ->where('nama', 'like', "%" . $cari . "%")
+            ->paginate();
+
+        return view('index', compact('pegawai'));
     }
 }
