@@ -14,26 +14,23 @@
     <div class="body">
         <div class="card-body">
             <a href="/pegawai/tambah" class="btn btn-primary my-3">Tambah</a>
-            <a href="/pegawai/cetak" class="btn btn-primary" target="_blank">CETAK PDF</a>
-
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
-                        <th>Alamat</th>
-                        <th></th>
+                        <th>Judul</th>
+                        <th>Tags</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($pegawai as $no => $p)
+                    @foreach($article as $no => $a)
                     <tr>
                         <td>{{ ++$no }}</td>
-                        <td>{{ $p->nama }}</td>
-                        <td>{{ $p->alamat }}</td>
+                        <td>{{ $a->judul }}</td>
                         <td>
-                            <a href="/pegawai/edit/{{ $p->id }}" class="btn btn-warning">Edit</a>
-                            <a href="/pegawai/hapus/{{ $p->id }}" class="btn btn-danger">Hapus</a>
+                            @foreach($a->tags as $t)
+                            {{ $t->tag }},
+                            @endforeach
                         </td>
                     </tr>
                     @endforeach
